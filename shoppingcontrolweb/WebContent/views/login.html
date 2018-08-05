@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <title>Faça seu login!</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- CSS -->
+        <link rel="stylesheet" href="../css/materialize.min.css">        
+        <!-- Fonts -->
+        <link rel="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">        
+		<!-- Icons -->
+  		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  		
+    </head>
+    <body>
+    <div class="row" style="width:100%;">
+         <div class="col s12 m12 l12">
+               <ul id="itemDropDown" class="dropdown-content">
+               <li><a href="#!">Sobre</a></li>               
+               <li><a href="#!">O Projeto</a></li>
+               <li><a href="#!">Objetivo</a></li>
+            </ul>
+            <nav>
+               <div class="nav-wrapper teal lighten-2">
+                  <a href="#" class="brand-logo center">Controle seus gastos agora</a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">                    
+                     <!-- Dropdown Trigger -->
+                     <li><a class="dropdown-button" data-activates="itemDropDown">Menu<i class="material-icons right">arrow_drop_down</i></a></li>
+                  </ul>
+               </div>
+            </nav>
+         </div>
+         <div>
+         	<p id="description" class="col s8 m6 flow-text">
+         	Aprenda a controlar os seus gastos, de modo simples.
+         	    Esteja sempre no controle, que tudo vai dar certo!
+         </p>
+      </div>
+        <div class="container">
+            <div class="z-depth-5 box-parent-login">
+    	       <div class="well bg-white box-login">    		         		          
+    			         <fieldset>     
+    				        <div class="form-group ls-login-user">    					       
+    					       <input id="user" class="form-control ls-login-bg-user input-lg" placeholder="Username" type="text">
+    				        </div>     
+        				    <div class="form-group ls-login-password">    					       
+    					       <input id="pwd" class="form-control ls-login-bg-password input-lg" placeholder="Password" type="password">
+    				        </div>     
+    				        <button id="idbtnlogin" onclick="checkLogin()" class="waves-effect waves-light btn"><i class="material-icons right">perm_identity</i>Entrar</button>
+                            <div id="passwordFeatures">
+    				            <p><a href="http://localhost:8083/sistemacontroledegastosweb/views/cadastro.html">Cadastre-se agora</a></p>
+                                <p><a href="http://localhost:8083/sistemacontroledegastosweb/views/resetSenha.html" class="ls-login-forgot">Esqueceu sua senha?</a></p>
+    				        </div>    			        
+    		          <div id="messageLogin"></div>
+    		           </fieldset>
+    	       </div>
+            </div>
+        </div>
+        <footer class="page-footer teal lighten-2">         
+          <div class="footer-copyright">
+            <div class="container">© 2017 Uver Copyright 
+            <a class="green-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        </footer>
+        <!-- Jquery 3.1.1 -->
+        <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!-- Use restful services -->	
+		<script src="../js/restfulProtocol.js"></script>
+		<!-- Login Screen -->
+  		<script src="../js/ajax/login.js"></script>
+    	<!-- JS -->
+        <script type="text/javascript" src="../js/materialize.min.js"> </script>
+    </body>
+</html>

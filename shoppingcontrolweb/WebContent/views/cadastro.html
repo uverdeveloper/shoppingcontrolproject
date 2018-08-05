@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+			
+			 <!-- CSS -->
+        	<link rel="stylesheet" href="../css/materialize.min.css">	
+
+<title>Sistema Controle de Gastos - Cadastro</title>
+
+</head>
+<body>
+	<div class="container">
+		<div id="telaCadastroDeUsuario">
+			<div class="form-group ls-login">
+				<label for="name" id="lblName">Name: </label>
+				<input id="novoUsuario" class="form-control ls-login-bg-password input-lg" type="text" />
+			</div>
+		<br />
+			<div class="form-group ls-login-password">
+				<label for="cadastroDeSenha" id="lblCadastroDeSenha" >Senha: </label> 
+				<input id="cadastrarSenha" class="form-control ls-login-bg-password input-lg" type="password" />
+			</div>
+		<br />
+			<div>
+				<label for="confirmarSenha" id="lblConfirmarNovaSenha">Confirmar: </label> 
+				<input id="campoConfirmarNovaSenha" class="form-control ls-login-bg-password input-lg" type="password" />
+			</div>
+		<br />
+			<div>
+				<button id="botaoCadastrarUsuario" onclick="cadastrarUsuario()" class="waves-effect waves-light btn">Cadastrar</button>
+			</div>
+			<div id="mensagemUsuarioNaoCadastrado"></div>
+		</div>
+	</div>
+		<footer class="page-footer teal lighten-2">         
+        	  <div class="footer-copyright">
+            	<div class="container">© 2017 Uver Copyright 
+            		<a class="green-text text-lighten-4 right" href="#!">More Links</a>
+            	</div>
+          	</div>
+     	</footer>
+     
+     <!-- JS -->
+        <script type="text/javascript" src="../js/materialize.min.js"> </script>
+        <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="../js/restfulProtocol.js"></script>
+		<script src="../js/ajax/login.js"></script>
+</body>
+</html>

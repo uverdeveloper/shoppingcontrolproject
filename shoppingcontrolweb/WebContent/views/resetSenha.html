@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+			
+			 <!-- CSS -->
+        	<link rel="stylesheet" href="../css/materialize.min.css">	
+
+<title>Sistema Controle de Gastos - Reset de Senha</title>
+
+</head>
+<body>
+	<div class="container">
+		<div id="telaResetSenha">
+			<div class="form-group ls-login-password">
+				<label for="alterarSenha" id="lblSenhaAtual">Senha Atual: </label>
+				<input id="campoSenhaAtual" class="form-control ls-login-bg-password input-lg" type="password" />
+			</div>
+		<br />
+			<div class="form-group ls-login-password">
+				<label for="alterarSenha" id="lblNovaSenha" >Nova Senha: </label> 
+				<input id="campoNovaSenha" class="form-control ls-login-bg-password input-lg" type="password" />
+			</div>
+		<br />
+			<div>
+				<label for="alterarSenha" id="lblConfirmarNovaSenha">Confirmar: </label> 
+				<input id="campoConfirmarNovaSenha" class="form-control ls-login-bg-password input-lg" type="password" />
+			</div>
+		<br />
+			<div>
+				<button id="botaoAlterarSenha" onclick="alterarSenha()" class="waves-effect waves-light btn">Alterar</button>
+			</div>
+			<div id="mensagemSenhaNaoAlterada"></div>
+		</div>
+	</div>
+		<footer class="page-footer teal lighten-2">         
+        	  <div class="footer-copyright">
+            	<div class="container">© 2017 Uver Copyright 
+            		<a class="green-text text-lighten-4 right" href="#!">More Links</a>
+            	</div>
+          	</div>
+     	</footer>
+     
+     <!-- JS -->
+        <script type="text/javascript" src="../js/materialize.min.js"> </script>
+        <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="../js/restfulProtocol.js"></script>
+		<script src="../js/ajax/login.js"></script>
+</body>
+</html>
