@@ -21,10 +21,10 @@ import com.shoppingcontrol.bean.ShoppingControl;
 import com.shoppingcontrol.bean.ShoppingControl;
 import com.shoppingcontrol.dao.ShoppingControlDAO;
 
-//http://localhost:8083/sistemacontroledegastosweb/rest/sistemacontrolegastos/
+//http://localhost:8083/shoppingcontrolweb/rest/notes/all
 
 @XmlRootElement
-@Path("/sistemacontroledegastos")
+@Path("/notes")
 
 public class ShoppingControlResource {
 
@@ -47,7 +47,7 @@ public class ShoppingControlResource {
 		return list;
 	}
 
-	@GET
+	/*@GET
 	@Path("{ano}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<ShoppingControl> getByYear(@PathParam("ano") String ano) {
@@ -101,8 +101,8 @@ public class ShoppingControlResource {
 		}
 		return total;
 	}
-
-	/*@GET
+	
+	@GET
 	@Path("soma/{mes}/{ano}/{valorDisponivel}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String valueRemaining(@PathParam("mes") String mes, @PathParam("ano") int ano, @PathParam("valorDisponivel") double valorDisponivel){
@@ -168,7 +168,7 @@ public class ShoppingControlResource {
 	}
 	
 	
-	@GET
+	/*@GET
 	@Path("/lastId")
 	@Produces(MediaType.APPLICATION_JSON)
 	public int returnLastId(){
@@ -182,5 +182,5 @@ public class ShoppingControlResource {
 			e.printStackTrace();
 		}
 		return 0;
-	}
+	}*/
 }
