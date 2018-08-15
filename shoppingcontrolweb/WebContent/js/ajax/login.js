@@ -12,14 +12,14 @@ function checkLogin() {
 	
 		$.ajax({
 				type : "GET",
-				url : "http://localhost:8083/sistemacontroledegastosweb/rest/sistemacontroledegastoslogin/" + user + "/" + pwd,
+				url : "http://localhost:8083/shoppingcontrolweb/rest/login/" + user + "/" + pwd,
 				contentType : "application/json; charset=utf-8",
 				dataType : "text",
 				success : function(result) {
 					
 					if (result == "OK") {
 						
-						window.location.assign("http://localhost:8083/sistemacontroledegastosweb/views/gastos.html");
+						window.location.assign("http://localhost:8083/shoppingcontrolweb/views/gastos.html");
 						
 					} else {
 						$("#messageLogin").append(
@@ -48,7 +48,7 @@ function alterarSenha() {
 	
 		$.ajax({
 				type : "GET",
-				url : "http://localhost:8083/sistemacontroledegastosweb/rest/sistemacontroledegastoslogin/" + senhaAtual + "/" + novaSenha + "/" + confirmarNovaSenha,
+				url : "http://localhost:8083/shoppingcontrolweb/rest/login/" + senhaAtual + "/" + novaSenha + "/" + confirmarNovaSenha,
 				contentType : "application/json; charset=UTF-8",
 				dataType : "text",
 				success : function(result) {
@@ -56,7 +56,7 @@ function alterarSenha() {
 					$("#alterarSenha").empty();
 
 					if (result == "OK") {
-						window.location.assign("http://localhost:8083/sistemacontroledegastosweb/views/login.html");
+						window.location.assign("http://localhost:8083/shoppingcontrolweb/views/index.html");
 					} else {
 						$("#mensagemSenhaNaoAlterada").append(
 										"<div id=\"alterarSenha\">"
@@ -87,7 +87,7 @@ function cadastrarUsuario() {
 	
 		$.ajax({
 				type : "GET",
-				url : "http://localhost:8083/sistemacontroledegastosweb/rest/sistemacontroledegastoscadastro/" + novoUsuario + "/" + cadastrarSenha + "/" + confirmarNovaSenha,
+				url : "http://localhost:8083/shoppingcontrolweb/rest/cadastro/" + novoUsuario + "/" + cadastrarSenha + "/" + confirmarNovaSenha,
 				contentType : "application/json; charset=UTF-8",
 				dataType : "text",
 				success : function(result) {
@@ -95,7 +95,7 @@ function cadastrarUsuario() {
 					$("#mensagemUsuarioNaoCadastrado").empty();
 
 					if (result == "OK") {
-						window.location.assign("http://localhost:8083/sistemacontroledegastosweb/views/login.html");
+						window.location.assign("http://localhost:8083/shoppingcontrolweb/views/index.html");
 					} else {
 						$("#mensagemUsuarioNaoCadastrado").append(
 										"<div>"

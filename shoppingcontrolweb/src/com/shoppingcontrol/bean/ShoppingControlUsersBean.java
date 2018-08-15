@@ -59,10 +59,9 @@ public class ShoppingControlUsersBean {
 
 	@Override
 	public String toString() {
-		return "SistemaControleDeGastosUsersBean [user=" + user + ", password=" + password + ", status=" + status
+		return "ShoppingControlUsersBean [user=" + user + ", password=" + password + ", status=" + status
 				+ ", novaSenha=" + novaSenha + ", confirmarNovaSenha=" + confirmarNovaSenha + ", senhaAlterada="
 				+ senhaAlterada + "]";
 	}
-
 
 }

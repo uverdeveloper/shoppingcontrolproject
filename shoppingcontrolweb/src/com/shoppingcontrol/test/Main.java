@@ -8,7 +8,9 @@ import java.util.Date;
 import java.util.List;
 
 import com.shoppingcontrol.bean.ShoppingControl;
+import com.shoppingcontrol.bean.ShoppingControlUsersBean;
 import com.shoppingcontrol.dao.ShoppingControlDAO;
+import com.shoppingcontrol.dao.ShoppingControlDAOUsers;
 
 public class Main {
 
@@ -20,12 +22,12 @@ public class Main {
 		Date date = new Date();
 		String buyDate = sdf.format(date);
 		
-		ShoppingControlDAO dao = new ShoppingControlDAO(conn);
+		//ShoppingControlDAO dao = new ShoppingControlDAO(conn);
 		
 		
 		// INSERT
 		/*ShoppingControl shoppingControl = new ShoppingControl();
-		shoppingControl.setId(1);
+		shoppingControl.setId(3);
 		shoppingControl.setApplication("compra0");
 		shoppingControl.setValue(3.00);
 		shoppingControl.setBuy_date(buyDate);
@@ -67,7 +69,7 @@ public class Main {
 		// SELECT BY MONTH
 				/*try {
 					List<ShoppingControl> list = new ArrayList<ShoppingControl>();
-					list = dao.selectByMonth(buyDate);
+					list = dao.selectByMonth("08","2018");
 					
 					for(ShoppingControl data : list) {
 						System.out.println(data.toString());
@@ -95,11 +97,25 @@ public class Main {
 		
 		// GET SHOPPING OF THE SUM
 		/*try {
-			System.out.println("SUM = " + dao.sumValues(buyDate));
+			System.out.println("SUM = " + dao.sumValues("08", "2018"));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
+		
+		ShoppingControlUsersBean controlUsersBean = new ShoppingControlUsersBean();
+		controlUsersBean.setUser("uver");
+		controlUsersBean.setPassword("123");
+		
+		ShoppingControlDAOUsers controlDAOUsers = new ShoppingControlDAOUsers(conn);
+		try {
+			System.out.println(controlDAOUsers.validUser(controlUsersBean));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 }

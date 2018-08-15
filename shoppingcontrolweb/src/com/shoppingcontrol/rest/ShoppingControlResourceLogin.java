@@ -14,15 +14,15 @@ import com.connectionfactory.ConnectionFactory;
 import com.shoppingcontrol.bean.ShoppingControlUsersBean;
 import com.shoppingcontrol.dao.ShoppingControlDAOUsers;
 
-//http://localhost:8083/sistemacontroledegastosweb/rest/sistemacontrolegastoslogin/
+//http://localhost:8083/shoppingcontrolweb/rest/login/
 
 @XmlRootElement
-@Path("/sistemacontroledegastoslogin")
+@Path("/login")
 
 public class ShoppingControlResourceLogin {
 
 	@GET
-	@Path("{user}/{pwd}")	
+	@Path("/{user}/{pwd}")	
 	@Produces(MediaType.TEXT_PLAIN)
 	public String logon(@PathParam("user") String user, @PathParam("pwd") String pwd) {
 		
@@ -30,12 +30,12 @@ public class ShoppingControlResourceLogin {
 		ShoppingControlDAOUsers dao = new ShoppingControlDAOUsers(conn);
 
 		try {
-			ShoppingControlUsersBean sistemaControleDeGastosUsersBean = new ShoppingControlUsersBean();
-			sistemaControleDeGastosUsersBean.setUser(user);
-			sistemaControleDeGastosUsersBean.setPassword(pwd);
-			sistemaControleDeGastosUsersBean = dao.validUser(sistemaControleDeGastosUsersBean);
+			ShoppingControlUsersBean shoppingControlUsersBean = new ShoppingControlUsersBean();
+			shoppingControlUsersBean.setUser(user);
+			shoppingControlUsersBean.setPassword(pwd);
+			shoppingControlUsersBean = dao.validUser(shoppingControlUsersBean);
 			
-			return sistemaControleDeGastosUsersBean.getStatus();
+			return shoppingControlUsersBean.getStatus();
 		} catch (NullPointerException n) {
 			n.printStackTrace();
 		} catch (SQLException e) {
@@ -55,12 +55,12 @@ public class ShoppingControlResourceLogin {
 		ShoppingControlDAOUsers dao = new ShoppingControlDAOUsers(conn);
 
 		try {
-			ShoppingControlUsersBean sistemaControleDeGastosUsersBean = new ShoppingControlUsersBean();
-			sistemaControleDeGastosUsersBean.setPassword(senhaAtual);
-			sistemaControleDeGastosUsersBean.setNovaSenha(novaSenha);
-			sistemaControleDeGastosUsersBean.setConfirmarNovaSenha(confirmarNovaSenha);
+			ShoppingControlUsersBean shoppingControlUsersBean = new ShoppingControlUsersBean();
+			shoppingControlUsersBean.setPassword(senhaAtual);
+			shoppingControlUsersBean.setNovaSenha(novaSenha);
+			shoppingControlUsersBean.setConfirmarNovaSenha(confirmarNovaSenha);
 			
-			return dao.isPwdExist(sistemaControleDeGastosUsersBean);
+			return dao.isPwdExist(shoppingControlUsersBean);
 		} catch (NullPointerException n) {
 			n.printStackTrace();
 		} catch (SQLException e) {

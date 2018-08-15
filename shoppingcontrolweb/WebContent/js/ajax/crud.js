@@ -11,7 +11,7 @@ function consultaPorAno() {
 
 	$.ajax({
 				type : "GET",
-				url : "http://localhost:8083/sistemacontroledegastosweb/rest/sistemacontroledegastos/" + ano,
+				url : "http://localhost:8083/shoppingcontrolweb/rest/search1/" + ano,
 				contentType : "application/json; charset=UTF-8",
 				success : function(data){
 					tabela();
@@ -19,11 +19,10 @@ function consultaPorAno() {
 						$("tbody").append(
 									"<tr>" 
 										+ "<td>" + data[index].id	+ "</td>" 
-										+ "<td>" + data[index].aplicacao	+ "</td>" 
-										+ "<td>" + parseFloat(data[index].valor).toFixed(2)	+ "</td>" 
-										+ "<td>" + data[index].mes + "</td>" 
-										+ "<td>" + data[index].ano + "</td>" 
-										+ "<td>" + data[index].observacao + "</td>"
+										+ "<td>" + data[index].application	+ "</td>" 
+										+ "<td>" + parseFloat(data[index].value).toFixed(2)	+ "</td>" 
+										+ "<td>" + data[index].buy_date + "</td>" 
+										+ "<td>" + data[index].description + "</td>"
 									+ "</tr>")
 					})
 				},
@@ -40,7 +39,7 @@ function consultaPorAno() {
 
 function consultaPorMes() {	
 		
-	var valor = $("#valueDisponible").val();
+	
 	var mes = $("#mes").val();
 	var ano = $("#ano").val();	
 	
@@ -50,19 +49,10 @@ function consultaPorMes() {
 	
 	var rest = "";
 	var sum;	
-	
-	$.ajax({
-			type : "GET",
-			url : "http://localhost:8083/sistemacontroledegastosweb/rest/sistemacontroledegastos/soma/" + mes + "/" + ano + "/" + valor,
-			dataType : "text",
-			success : function(result) {				
-				rest = result;
-				
-				$("#valueDisponible").attr("required","required").css("border-bottom-color","d3d3d3");
 				
 				$.ajax({
 					type : "GET",
-					url : "http://localhost:8083/sistemacontroledegastosweb/rest/sistemacontroledegastos/" + mes + "/" + ano,
+					url : "http://localhost:8083/shoppingcontrolweb/rest/search2/" + mes + "/" + ano,
 					contentType : "application/json; charset=UTF-8",
 					success : function(data) {
 						tabela();
@@ -70,56 +60,36 @@ function consultaPorMes() {
 								$("tbody").append(
 											"<tr>" 
 												+ "<td>" + data[index].id	+ "</td>"
-												+ "<td>" + data[index].aplicacao + "</td>" 
-												+ "<td>" + parseFloat(data[index].valor).toFixed(2)	+ "</td>" 
-												+ "<td>" + data[index].mes + "</td>" 
-												+ "<td>" + data[index].ano + "</td>" 
-												+ "<td>" + data[index].observacao + "</td>"										
+												+ "<td>" + data[index].application + "</td>" 
+												+ "<td>" + parseFloat(data[index].value).toFixed(2)	+ "</td>"
+												+ "<td>" + data[index].buy_date + "</td>" 
+												+ "<td>" + data[index].description + "</td>"										
 											+ "</tr>")										
-							})									
-									$.ajax({
-										type : "GET",
-										url : "http://localhost:8083/sistemacontroledegastosweb/rest/sistemacontroledegastos/soma/" + mes + "/" + ano,
-										contentType : "application/json; charset=UTF-8",
-										success : function(result) {				
-																			
-													sum = result;
-													
-													if(rest != "" && rest != null){
-														if(!rest.match(/-/)){
-																$("tbody").append(	
-																		"<tr>"
-																		+"<td>Total do mês: "+ sum + "</td>"
-																		+"</tr>"
-																		+"<tr>"
-																		+"<td>Restante: " + rest + "</td>"	
-																		+"</tr>"																		
-																		)
-														}else{		
-															
-															var convertString = parseFloat(rest);
-															
-															$("tbody").append(
-																	"<tr>"
-																	+"<td>Total: "+ sum + "</td>"
-																	+"</tr>"
-																	+"<tr>"
-																	+"<td style=\"color:red;\">Valor restante: " + convertString.toFixed(2) + "</td>"	
-																	+"</tr>"
-																)
-															}
-														}
-												},
-												error : function() {
-													$("body").append(
-															"<div id=\"noData\">"
-															+ "<p>"
-															+ "<label for=\"databaseEmpty\" id=\"mensagem\">Não Há valores a serem somados.</label>"
-															+ "</p>"
-															+ "</div>")
-															}
-												});									
+							})
 							
+							$.ajax({
+								type : "GET",
+								url : "http://localhost:8083/shoppingcontrolweb/rest/sumValues/" + mes + "/" + ano,
+								contentType : "application/json; charset=UTF-8",
+								success : function(result) {				
+																	
+											sum = result;
+											
+														$("tbody").append(	
+																"<tr>"
+																+"<td>Total: "+ sum + "</td>"
+																+"</tr>"															
+																)
+												},
+										error : function() {
+											$("body").append(
+													"<div id=\"noData\">"
+													+ "<p>"
+													+ "<label for=\"databaseEmpty\" id=\"mensagem\">Não há valores a serem somados.</label>"
+													+ "</p>"
+													+ "</div>")
+													}
+										});
 							},
 							error : function() {
 								$("body").append(
@@ -129,55 +99,51 @@ function consultaPorMes() {
 										+ "</p>"
 										+ "</div>")
 										}
-							});
-				
-				},
-				error : function() {
-					$("#valueDisponible").attr("required","required").css("border-bottom-color","#f00");
-					}
-			});	
-		}
+							});				
+		}		
 	}
 
 function cadastrarGastos() {
 
 	var ultimoId;
+	var dateToday = new Date();
+	var monthNumber = 1;
+	
+	monthNumber += dateToday.getMonth();
+	
+	if(monthNumber <10)
+		monthNumber = '0'+monthNumber;
 	
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8083/sistemacontroledegastosweb/rest/sistemacontroledegastos/lastId",
+			url: "http://localhost:8083/shoppingcontrolweb/rest/organizingId/lastId",
 			success: function(result){
 				
-				ultimoId = result;
+				ultimoId = result;				
 				
 				var data = {
 						"id" : ultimoId,
-						"aplicacao" : $("#aplicacao").val(),
-						"valor" : $("#valor").val(),
-						"mes" : $("#mes option:selected").val(),
-						"ano" : $("#ano option:selected").val(),
-						"observacao" : $("#observacao").val()
+						"application" : $("#aplicacao").val(),
+						"value" : $("#valor").val(),
+						"buy_date" : dateToday.getDate() + '/' + monthNumber + '/' + dateToday.getFullYear(),						
+						"description" : $("#observacao").val()
 					};
-
+				
 					json = JSON.stringify(data);
-
+					
 					$.ajax({
 							type : "POST",
-							url : "http://localhost:8083/sistemacontroledegastosweb/rest/sistemacontroledegastos/",
-							dataType : "text",
+							url : "http://localhost:8083/shoppingcontrolweb/rest/notes/",
 							contentType : "application/json; charset=utf-8",
+							dataType : "text",
 							data : json,
-							success : function(result) {								
-								Materialize.toast('Cadastramento com sucesso!', 4000)
+							success : function(result) {
+								Materialize.toast('Item cadastrado!', 4000)
 								},
 							error : function(erro) {
-								$("body").append(
-										"<div id=\"noData\">"
-										+ "<p>"
-										+ "<label for=\"databaseEmpty\" id=\"mensagem\">Aplicação não cadastrada.</label>"
-										+ "</p>"
-										+ "</div>")
-								}
+								Materialize.toast('Item não cadastrado!', 5000)
+								},
+								
 							});
 				
 			},error : function(){
@@ -202,7 +168,7 @@ function apagarItem(paramId) {
 
 		$.ajax({
 				type : "DELETE",
-				url : "http://localhost:8083/sistemacontroledegastosweb/rest/sistemacontroledegastos/",
+				url : "http://localhost:8083/shoppingcontrolweb/rest/notes/",
 				contentType : "application/json; charset=UTF-8",
 				dataType : "text",
 				data : json,
@@ -219,26 +185,25 @@ function updateItem() {
 		
 	var data = {
 			"id" : $("#id").val(),
-			"aplicacao" : $("#aplicacao").val(),
-			"valor" : $("#valor").val(),
-			"mes" : $("#mes option:selected").val(),
-			"ano" : $("#ano option:selected").val(),
-			"observacao" : $("#observacao").val()!= '' ? $("#observacao").val() : 'N/A' 
+			"application" : $("#aplicacao").val(),
+			"value" : $("#valor").val(),
+			"buy_date" : $("#dataDaCompra").val(),
+			"description" : $("#observacao").val()!= '' ? $("#observacao").val() : 'N/A' 
 		};
 	
 	json = JSON.stringify(data);
 	
 	$.ajax({
 		type : "PUT",
-		url : "http://localhost:8083/sistemacontroledegastosweb/rest/sistemacontroledegastos/",
+		url : "http://localhost:8083/shoppingcontrolweb/rest/notes/",
 		dataType : "text",
 		contentType : "application/json; charset=utf-8",
 		data : json,
 		success : function(result) {
-			alert('')
+			Materialize.toast('Item atualizado!', 4000)
 			},
 		error : function(erro) {
-				alert('Dados não inseridos: ' + erro)
+			Materialize.toast('Item não atualizado!', 4000)
 			}
 		});
 }

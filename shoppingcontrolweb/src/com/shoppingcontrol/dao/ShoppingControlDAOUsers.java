@@ -11,7 +11,7 @@ import com.shoppingcontrol.bean.ShoppingControlUsersBean;
 
 public class ShoppingControlDAOUsers extends ConnectionFactory {
 
-	static ShoppingControlUsersBean sistemaControleDeGastosUsersBean = new ShoppingControlUsersBean();
+	static ShoppingControlUsersBean shoppingControlUserBean = new ShoppingControlUsersBean();
 
 	public ShoppingControlDAOUsers(Connection conn) {
 		super(conn);
@@ -34,58 +34,58 @@ public class ShoppingControlDAOUsers extends ConnectionFactory {
 		}
 	}
 
-	public ShoppingControlUsersBean validUser(ShoppingControlUsersBean sistemaControleDeGastosUsersBean)
+	public ShoppingControlUsersBean validUser(ShoppingControlUsersBean shoppingControlUserBean)
 			throws SQLException {
 
-		rs = ps.executeQuery(selectDBUser + sistemaControleDeGastosUsersBean.getUser() + "' and user_pwd = '"
-				+ sistemaControleDeGastosUsersBean.getPassword() + "'");
+		rs = ps.executeQuery(selectDBUser + shoppingControlUserBean.getUser() + "' and user_pwd = '"
+				+ shoppingControlUserBean.getPassword() + "'");
 
 		while (rs.next()) {
-			sistemaControleDeGastosUsersBean = new ShoppingControlUsersBean();
+			shoppingControlUserBean = new ShoppingControlUsersBean();
 
-			sistemaControleDeGastosUsersBean.setUser(rs.getString("users"));
-			sistemaControleDeGastosUsersBean.setPassword(rs.getString("user_pwd"));
-			sistemaControleDeGastosUsersBean.setStatus("OK");
+			shoppingControlUserBean.setUser(rs.getString("users"));
+			shoppingControlUserBean.setPassword(rs.getString("user_pwd"));
+			shoppingControlUserBean.setStatus("OK");
 		}
 
 		st.close();
 
-		return sistemaControleDeGastosUsersBean;
+		return shoppingControlUserBean;
 
 	}
 
-	public String isPwdExist(ShoppingControlUsersBean sistemaControleDeGastosUsersBean) throws SQLException {
+	public String isPwdExist(ShoppingControlUsersBean shoppingControlUserBean) throws SQLException {
 
 		boolean isPwdExist = false;
 
-		rs = ps.executeQuery(selectDBPwdUser + sistemaControleDeGastosUsersBean.getPassword() + "'");
+		rs = ps.executeQuery(selectDBPwdUser + shoppingControlUserBean.getPassword() + "'");
 
 		while (rs.next()) {
 
-			sistemaControleDeGastosUsersBean.setUser(rs.getString("users"));
+			shoppingControlUserBean.setUser(rs.getString("users"));
 
 			isPwdExist = true;
 
 		}
 
-		if ((sistemaControleDeGastosUsersBean.getNovaSenha()
-				.equals(sistemaControleDeGastosUsersBean.getConfirmarNovaSenha()) && isPwdExist)) {
+		if ((shoppingControlUserBean.getNovaSenha()
+				.equals(shoppingControlUserBean.getConfirmarNovaSenha()) && isPwdExist)) {
 
 			PreparedStatement pStmt = con.prepareStatement(
-					"update user_pwd_table set user_pwd = '" + sistemaControleDeGastosUsersBean.getConfirmarNovaSenha()
-							+ "' where user_pwd = '" + sistemaControleDeGastosUsersBean.getPassword() + "'");
+					"update user_pwd_table set user_pwd = '" + shoppingControlUserBean.getConfirmarNovaSenha()
+							+ "' where user_pwd = '" + shoppingControlUserBean.getPassword() + "'");
 
-			sistemaControleDeGastosUsersBean.setSenhaAlterada("OK");
+			shoppingControlUserBean.setSenhaAlterada("OK");
 			
 			pStmt.execute();
 			pStmt.close();
 
-			return sistemaControleDeGastosUsersBean.getSenhaAlterada();
+			return shoppingControlUserBean.getSenhaAlterada();
 		}
 
 		st.close();
 
-		return sistemaControleDeGastosUsersBean.getSenhaAlterada();
+		return shoppingControlUserBean.getSenhaAlterada();
 	}
 	
 	public String signInUser(ShoppingControlUsersBean controleDeGastosUsersBean) throws SQLException{

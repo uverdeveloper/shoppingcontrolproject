@@ -12,6 +12,7 @@
 
 .container{	
 	width: 25%;
+	height: 60%;
 	margin-top: 3%;
 	margin-bottom: 2%; 	
 } 
@@ -122,4 +123,8 @@ html{
 
 footer{
 	margin-top: 0%;
+}
+
+fieldset{
+	height: 350px;
 }

@@ -12,7 +12,7 @@ primary key(users),
 foreign key(users) references users_table(users)
 );
 
-create table expense_control(
+create table expense(
 id integer(5) not null,
 aplicacao varchar(30) not null,
 valor numeric(6,2) not null,
@@ -20,4 +20,4 @@ mes varchar(10) not null,
 ano integer(4) not null,
 observacao varchar(20),
 primary key(id)
-)auto_increment = 0;
+)

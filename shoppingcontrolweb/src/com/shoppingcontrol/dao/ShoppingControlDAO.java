@@ -2,10 +2,12 @@ package com.shoppingcontrol.dao;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -67,10 +69,11 @@ public class ShoppingControlDAO extends ConnectionFactory {
 	}
 
 	public List<ShoppingControl> selectByYear(String date) throws SQLException {
-		
+		// APENAS PARA TESTE COM URL DO SERVICE
+		date = "13/08/2018";
 		String year = date.substring(6);
 		
-		rs = st.executeQuery(selectData + year + "%' order by buy_date");
+		rs = st.executeQuery(selectData + year + "' order by buy_date");
 
 		List<ShoppingControl> listSelectByYear = new ArrayList<ShoppingControl>();
 
@@ -92,11 +95,11 @@ public class ShoppingControlDAO extends ConnectionFactory {
 		return listSelectByYear;
 	}
 
-	public List<ShoppingControl> selectByMonth(String date) throws SQLException {
+	public List<ShoppingControl> selectByMonth(String month, String year) throws SQLException {
 
-		String month = date.substring(3, date.length()-5);
+		String date = month+"/"+year;
 		
-		rs = st.executeQuery(selectData + month + "%' order by buy_date");
+		rs = st.executeQuery(selectData + date + "' order by buy_date");
 
 		List<ShoppingControl> listSelectBDPorMes = new ArrayList<ShoppingControl>();
 
@@ -118,17 +121,21 @@ public class ShoppingControlDAO extends ConnectionFactory {
 		return listSelectBDPorMes;
 	}
 
-	public void insertData(ShoppingControl ShoppingControl) throws Exception {
+	public void insertData(ShoppingControl shoppingControl) throws Exception {
 
 		String query = "insert into expense(id, application, value, buy_date, description)" + "values(?,?,?,?,?)";
 
 		PreparedStatement pStmt = con.prepareStatement(query);
 		
-		pStmt.setInt(1, ShoppingControl.getId());
-		pStmt.setString(2, ShoppingControl.getApplication());
-		pStmt.setDouble(3, ShoppingControl.getValue());
-		pStmt.setString(4, ShoppingControl.getBuy_date());
-		pStmt.setString(5, ShoppingControl.getDescription());
+		/*SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date dateToday = new Date(0);
+		String registerDate = sdf.format(dateToday);*/
+		
+		pStmt.setInt(1, shoppingControl.getId());
+		pStmt.setString(2, shoppingControl.getApplication());
+		pStmt.setDouble(3, shoppingControl.getValue());
+		pStmt.setString(4,shoppingControl.getBuy_date());
+		pStmt.setString(5, shoppingControl.getDescription());
 
 		pStmt.execute();
 		pStmt.close();
@@ -146,31 +153,6 @@ public class ShoppingControlDAO extends ConnectionFactory {
 		pStmt.execute();
 		pStmt.close();
 	}
-	
-	/*public String valueDisponible(String mes, int ano, double value) throws Exception{
-		
-		String valueDisponible;
-		
-		String query = "select sum(valor) as soma from expense_control "
-		+ "where mes = '" + mes + "' and ano = " + ano;
-		
-		rs = st.executeQuery(query);
-		
-		this.sum = Double.valueOf(String.format(Locale.US, "%.2f", Math.ceil(this.sum)));
-		value = Double.valueOf(String.format(Locale.US, "%.2f", Math.ceil(value)));
-		
-		while(rs.next()){
-			
-			this.sum += rs.getDouble(1); 
-		}
-		
-		valueDisponible = Double.toString(value-sum);
-	
-		st.close();
-		
-		
-		return valueDisponible;
-	}*/
 	
 	public void updateData(ShoppingControl shoppingControl) throws Exception{
 		
@@ -204,14 +186,17 @@ public class ShoppingControlDAO extends ConnectionFactory {
 		return shoppingControl.getId()+1;
 	}
 	
-	public String sumValues(String date) throws Exception {
+	public String sumValues(String month, String year) throws Exception {
+		
+		// concat mes e ano
+		
+		String date_buy = month+"/"+year;
 		
 		String total;
-		String month = date.substring(3, date.length()-5);
-		String year = date.substring(6);		
+		/*String month = date.substring(3, date.length()-5);
+		String year = date.substring(6);*/		
 		
-		rs = st.executeQuery("select sum(value) as total from expense where buy_date like '%" + month
-				+ "%' and buy_date like '%" + year + "%'");
+		rs = st.executeQuery("select sum(value) as total from expense where buy_date like '%" + date_buy + "'");
 		
 		this.sum = Double.valueOf(String.format(Locale.US, "%.2f", Math.ceil(this.sum)));
 		

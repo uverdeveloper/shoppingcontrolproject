@@ -16,7 +16,7 @@ import com.shoppingcontrol.dao.ShoppingControlDAOUsers;
 
 
 @XmlRootElement
-@Path("/sistemacontroledegastoscadastro")
+@Path("/cadastro")
 public class ShoppingControlResourceRegister {
 
 	@GET

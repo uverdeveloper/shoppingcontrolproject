@@ -13,7 +13,7 @@ function init(val) {
 
 		$.ajax({
 					type : "GET",
-					url : "http://localhost:8083/sistemacontroledegastosweb/rest/sistemacontroledegastos/all",
+					url : "http://localhost:8083/shoppingcontrolweb/rest/notes/all",
 					contentType : "application/json; charset=UTF-8",
 					success : function(data) {
 						tabela();
@@ -22,11 +22,10 @@ function init(val) {
 							$("tbody").append(
 											"<tr>"
 												+ "<td>" + data[index].id + "</td>"
-												+ "<td>" + data[index].aplicacao + "</td>" 
-												+ "<td>" + parseFloat(data[index].valor).toFixed(2) + "</td>"
-												+ "<td>" + data[index].mes + "</td>" 
-												+ "<td>" + data[index].ano + "</td>"
-												+ "<td>" + data[index].observacao + "</td>"
+												+ "<td>" + data[index].application + "</td>" 
+												+ "<td>" + parseFloat(data[index].value).toFixed(2) + "</td>"
+												+ "<td>" + data[index].buy_date + "</td>" 
+												+ "<td>" + data[index].description + "</td>"
 												+ "<td><button class=\"waves-effect waves-light btn\" onclick=\"updateScreenItem(this);\" value=\""+data[index].id+"\">Alterar</button></td>"
 												+ "<td><button class=\"waves-effect waves-light btn\" onclick=\"apagarItem(this);\" value=\""+data[index].id+"\">Apagar</button></td>"
 											+ "</tr>")
@@ -62,23 +61,21 @@ function init(val) {
 		$("#Consultas").empty();
 		$("#Consultas").append(
 						"<div id=\"row\" style=\"width:300px;\">"
-								+"Insira o valor disponível: "
-								+"<input id=\"valueDisponible\"\ placeholder=\"Digite aqui\" />"
 								+"Consulta por mes/ano: "
 								+ "<select  id=\"mes\">"
 								+ "<option value=\"--------\" selected>--------</option>"
-								+ "<option value=\"Janeiro\">Janeiro</option>"
-								+ "<option value=\"Fevereiro\">Fevereiro</option>"
-								+ "<option value=\"Marco\">Março</option>"
-								+ "<option value=\"Abril\">Abril</option>"
-								+ "<option value=\"Maio\">Maio</option>"
-								+ "<option value=\"Junho\">Junho</option>"
-								+ "<option value=\"Julho\">Julho</option>"
-								+ "<option value=\"Agosto\">Agosto</option>"
-								+ "<option value=\"Setembro\">Setembro</option>"
-								+ "<option value=\"Outubro\">Outubro</option>"
-								+ "<option value=\"Novembro\">Novembro</option>"
-								+ "<option value=\"Dezembro\">Dezembro</option>"
+								+ "<option value=\"01\">Janeiro</option>"
+								+ "<option value=\"02\">Fevereiro</option>"
+								+ "<option value=\"03\">Março</option>"
+								+ "<option value=\"04\">Abril</option>"
+								+ "<option value=\"05\">Maio</option>"
+								+ "<option value=\"06\">Junho</option>"
+								+ "<option value=\"07\">Julho</option>"
+								+ "<option value=\"08\">Agosto</option>"
+								+ "<option value=\"09\">Setembro</option>"
+								+ "<option value=\"10\">Outubro</option>"
+								+ "<option value=\"11\">Novembro</option>"
+								+ "<option value=\"12\">Dezembro</option>"
 								+ "</select>"
 								+ "<select id=\"ano\">"
 								+ "<option value=\"--------\"selected>--------</option>"
@@ -97,27 +94,6 @@ function init(val) {
 								"<div id=\"row\" style=\"width:300px;\">"
 									+ " Aplicacao: <input type=\"text\" id=\"aplicacao\" />"
 									+ " Valor: <input type=\"text\" id=\"valor\" />"
-									+ " Mes: <select id=\"mes\">"
-									+ "<option value=\"Escolher\" disabled selected>Escolher</option>"
-									+ "<option value=\"Janeiro\">Janeiro</option>"
-									+ "<option value=\"Fevereiro\">Fevereiro</option>"
-									+ "<option value=\"Marco\">Março</option>"
-									+ "<option value=\"Abril\">Abril</option>"
-									+ "<option value=\"Maio\">Maio</option>"
-									+ "<option value=\"Junho\">Junho</option>"
-									+ "<option value=\"Julho\">Julho</option>"
-									+ "<option value=\"Agosto\">Agosto</option>"
-									+ "<option value=\"Setembro\">Setembro</option>"
-									+ "<option value=\"Outubro\">Outubro</option>"
-									+ "<option value=\"Novembro\">Novembro</option>"
-									+ "<option value=\"Dezembro\">Dezembro</option>"
-									+ "</select>"
-									+ " Ano: <select id=\"ano\">"
-									+ "<option value=\"Escolher\" disabled selected>Escolher</option>"
-									+ "<option value=\"2017\">2017</option>"
-									+ "<option value=\"2018\">2018</option>"
-									+ "<option value=\"2019\">2019</option>"
-									+ "</select>"
 									+ " Observacao: <input type=\"text\" id=\"observacao\" />"
 									+ "<button class=\"waves-effect waves-light btn\" onclick=\"cadastrarGastos();\">" +
 											"<i class=\"material-icons right\">mode_edit</i>Cadastrar</button>"
