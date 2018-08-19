@@ -19,7 +19,7 @@ public class ShoppingControlDAO extends ConnectionFactory {
 
 	static ShoppingControl ShoppingControl = new ShoppingControl();
 
-	private String selectData = "select id, application, value, buy_date, description from expense where buy_date like '%";
+	private String selectData = "select id, application, value, buy_date, due_date, description from expense where buy_date like '%";
 	
 	private double sum = 0.0;
 	
@@ -57,6 +57,7 @@ public class ShoppingControlDAO extends ConnectionFactory {
 			shoppingControl.setApplication(rs.getString("application"));
 			shoppingControl.setValue(rs.getDouble("value"));
 			shoppingControl.setBuy_date(rs.getString("buy_date"));
+			shoppingControl.setDue_date(rs.getString("due_date"));
 			shoppingControl.setDescription(rs.getString("description"));
 
 			listShoppingControl.add(shoppingControl);
@@ -68,12 +69,11 @@ public class ShoppingControlDAO extends ConnectionFactory {
 
 	}
 
-	public List<ShoppingControl> selectByYear(String date) throws SQLException {
+	public List<ShoppingControl> selectByYear(String year) throws SQLException {
 		// APENAS PARA TESTE COM URL DO SERVICE
-		date = "13/08/2018";
-		String year = date.substring(6);
+//		date = "13/08/2018";
 		
-		rs = st.executeQuery(selectData + year + "' order by buy_date");
+		rs = st.executeQuery(selectData + year + "' order by id");
 
 		List<ShoppingControl> listSelectByYear = new ArrayList<ShoppingControl>();
 
@@ -85,6 +85,7 @@ public class ShoppingControlDAO extends ConnectionFactory {
 			shoppingControl.setApplication(rs.getString("application"));
 			shoppingControl.setValue(rs.getDouble("value"));
 			shoppingControl.setBuy_date(rs.getString("buy_date"));
+			shoppingControl.setDue_date(rs.getString("due_date"));
 			shoppingControl.setDescription(rs.getString("description"));
 			
 			listSelectByYear.add(shoppingControl);
@@ -99,7 +100,7 @@ public class ShoppingControlDAO extends ConnectionFactory {
 
 		String date = month+"/"+year;
 		
-		rs = st.executeQuery(selectData + date + "' order by buy_date");
+		rs = st.executeQuery(selectData + date + "' order by id");
 
 		List<ShoppingControl> listSelectBDPorMes = new ArrayList<ShoppingControl>();
 
@@ -111,6 +112,7 @@ public class ShoppingControlDAO extends ConnectionFactory {
 			shoppingControl.setApplication(rs.getString("application"));
 			shoppingControl.setValue(rs.getDouble("value"));
 			shoppingControl.setBuy_date(rs.getString("buy_date"));
+			shoppingControl.setDue_date(rs.getString("due_date"));
 			shoppingControl.setDescription(rs.getString("description"));
 			
 			listSelectBDPorMes.add(shoppingControl);
@@ -123,7 +125,7 @@ public class ShoppingControlDAO extends ConnectionFactory {
 
 	public void insertData(ShoppingControl shoppingControl) throws Exception {
 
-		String query = "insert into expense(id, application, value, buy_date, description)" + "values(?,?,?,?,?)";
+		String query = "insert into expense(id, application, value, buy_date, due_date, description)" + "values(?,?,?,?,?,?)";
 
 		PreparedStatement pStmt = con.prepareStatement(query);
 		
@@ -135,7 +137,8 @@ public class ShoppingControlDAO extends ConnectionFactory {
 		pStmt.setString(2, shoppingControl.getApplication());
 		pStmt.setDouble(3, shoppingControl.getValue());
 		pStmt.setString(4,shoppingControl.getBuy_date());
-		pStmt.setString(5, shoppingControl.getDescription());
+		pStmt.setString(5, shoppingControl.getDue_date());
+		pStmt.setString(6, shoppingControl.getDescription());
 
 		pStmt.execute();
 		pStmt.close();
@@ -156,15 +159,16 @@ public class ShoppingControlDAO extends ConnectionFactory {
 	
 	public void updateData(ShoppingControl shoppingControl) throws Exception{
 		
-		String query = "update expense set application = ?, value = ?, buy_date = ?, description = ? where id = ? ";
+		String query = "update expense set application = ?, value = ?, buy_date = ?, due_date = ?, description = ? where id = ? ";
 		
 		PreparedStatement pStmt = con.prepareStatement(query);
 		
 		pStmt.setString(1, shoppingControl.getApplication().toUpperCase());
 		pStmt.setDouble(2, shoppingControl.getValue());
 		pStmt.setString(3, shoppingControl.getBuy_date());
-		pStmt.setString(4, shoppingControl.getDescription().toUpperCase());
-		pStmt.setInt(5, shoppingControl.getId());
+		pStmt.setString(4, shoppingControl.getDue_date());
+		pStmt.setString(5, shoppingControl.getDescription().toUpperCase());
+		pStmt.setInt(6, shoppingControl.getId());
 		
 		pStmt.executeUpdate();
 		pStmt.close();

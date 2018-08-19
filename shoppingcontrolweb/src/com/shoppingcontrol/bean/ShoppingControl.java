@@ -6,6 +6,7 @@ public class ShoppingControl {
 	private String application;
 	private double value;
 	private String buy_date;
+	private String due_date;
 	private String description = "N/A";
 
 	/**
@@ -21,7 +22,7 @@ public class ShoppingControl {
 	}
 
 	/**
-	 * @return the aplicacao
+	 * @return the application
 	 */
 
 	public String getApplication() {
@@ -29,24 +30,26 @@ public class ShoppingControl {
 	}
 
 	/**
-	 * @param aplicacao the aplicacao to set
+	 * @param application
+	 *            the application to set
 	 */
 	public void setApplication(String aplicacao) {
 		this.application = aplicacao;
 	}
 
 	/**
-	 * @return the valor
+	 * @return the value
 	 */
 	public double getValue() {
 		return value;
 	}
 
 	/**
-	 * @param valor the valor to set
+	 * @param value
+	 *            the value to set
 	 */
-	public void setValue(double valor) {
-		this.value = valor;
+	public void setValue(double value) {
+		this.value = value;
 	}
 
 	public String getBuy_date() {
@@ -57,24 +60,33 @@ public class ShoppingControl {
 		this.buy_date = buy_date;
 	}
 
+	public String getDue_date() {
+		return due_date;
+	}
+
+	public void setDue_date(String due_date) {
+		this.due_date = due_date;
+	}
+
 	/**
-	 * @return the observacao
+	 * @return the description
 	 */
 	public String getDescription() {
 		return description;
 	}
 
 	/**
-	 * @param observacao the observacao to set
+	 * @param description
+	 *            the description to set
 	 */
-	public void setDescription(String observacao) {
-		this.description = observacao;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override
 	public String toString() {
 		return "ShoppingControl [id=" + id + ", application=" + application + ", value=" + value + ", buy_date="
-				+ buy_date + ", description=" + description + "]";
+				+ buy_date + ", due_date=" + due_date + ", description=" + description + "]";
 	}
 
 }

@@ -24,7 +24,8 @@ function init(val) {
 												+ "<td>" + data[index].id + "</td>"
 												+ "<td>" + data[index].application + "</td>" 
 												+ "<td>" + parseFloat(data[index].value).toFixed(2) + "</td>"
-												+ "<td>" + data[index].buy_date + "</td>" 
+												+ "<td>" + data[index].buy_date + "</td>"
+												+ "<td>" + data[index].due_date + "</td>"
 												+ "<td>" + data[index].description + "</td>"
 												+ "<td><button class=\"waves-effect waves-light btn\" onclick=\"updateScreenItem(this);\" value=\""+data[index].id+"\">Alterar</button></td>"
 												+ "<td><button class=\"waves-effect waves-light btn\" onclick=\"apagarItem(this);\" value=\""+data[index].id+"\">Apagar</button></td>"
@@ -32,12 +33,7 @@ function init(val) {
 						})
 					},
 					error : function() {
-						$("body").append(
-								"<div id=\"noData\">"
-										+ "<p>"
-										+ "<label for=\"databaseEmpty\" id=\"mensagem\">Cadastre uma aplicação.</label>"
-										+ "</p>"
-										+ "</div>")
+						Materialize.toast('Cadastre um item', 4000)
 					}
 				});
 
@@ -49,9 +45,9 @@ function init(val) {
 						+ "Consulta por ano: " 
 						+ "<select id=\"ano\" onchange=\"consultaPorAno()\">"
 						+ "<option value=\"Escolher\" disabled selected>Escolher</option>"
-						+ "<option value=\"2017\">2017</option>"
-						+ "<option value=\"2018\">2018</option>"
-						+ "<option value=\"2019\">2019</option>"
+						+ "<option value=\"17\">2017</option>"
+						+ "<option value=\"18\">2018</option>"
+						+ "<option value=\"19\">2019</option>"
 						+ "</select>"
 						+ "</div>"
 						)
@@ -79,9 +75,9 @@ function init(val) {
 								+ "</select>"
 								+ "<select id=\"ano\">"
 								+ "<option value=\"--------\"selected>--------</option>"
-								+ "<option value=\"2017\">2017</option>"
-								+ "<option value=\"2018\">2018</option>"
-								+ "<option value=\"2019\">2019</option>"
+								+ "<option value=\"17\">2017</option>"
+								+ "<option value=\"18\">2018</option>"
+								+ "<option value=\"19\">2019</option>"
 								+ "</select>"
 								+"<button id=\"btnSearchMonth\" onclick=\"consultaPorMes()\" class=\"waves-effect waves-light btn-floating\"><i class=\"material-icons\">search</i></button>"
 								+"</div>"
@@ -94,6 +90,7 @@ function init(val) {
 								"<div id=\"row\" style=\"width:300px;\">"
 									+ " Aplicacao: <input type=\"text\" id=\"aplicacao\" />"
 									+ " Valor: <input type=\"text\" id=\"valor\" />"
+									+ " Vencimento: <input type=\"text\" id=\"vencimento\" />"
 									+ " Observacao: <input type=\"text\" id=\"observacao\" />"
 									+ "<button class=\"waves-effect waves-light btn\" onclick=\"cadastrarGastos();\">" +
 											"<i class=\"material-icons right\">mode_edit</i>Cadastrar</button>"

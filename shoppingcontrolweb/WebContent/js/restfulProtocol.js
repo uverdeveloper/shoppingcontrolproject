@@ -1,13 +1,5 @@
 $(document).ready(function() {
 	
-	dontBack();
-	
-	$('.carousel.carousel-slider').carousel({fullWidth: true});
-	autoplay();
-	function autoplay(){
-		$('.carousel.carousel-slider').carousel('next');
-		setTimeout(autoplay, 12000);
-	}
 	$(function(){
 	    $('#itemDropDown li').click(function(){
 	        var val = $(this).attr('id');     
@@ -15,7 +7,6 @@ $(document).ready(function() {
 	    });
 	});
 });
-
 
 function tabela(){
 	$("#tabelaDeGastos").empty();
@@ -26,7 +17,8 @@ function tabela(){
 					+"<th id=\"idGastos\">ID</th>"
 					+"<th id=\"aplicacaoGastos\">APLICACAO</th>"
 					+"<th id=\"valorGastos\">VALOR</th>"
-					+"<th id=\"dataDeCompra\">DATA DE COMPRA</th>"
+					+"<th id=\"registro\">DATA</th>"
+					+"<th id=\"vencimento\">VENCIMENTO</th>"					
 					+"<th id=\"observacaoGastos\">OBSERVACAO</th>"
 					+"<th id=\"btnAlterar\"></th>"
 				+"</tr>"
@@ -113,4 +105,3 @@ function dontBack(){
 		noback.init();
 	}(window)); 
 }
-
