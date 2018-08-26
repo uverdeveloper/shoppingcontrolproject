@@ -20,6 +20,7 @@ public class ShoppingControlDAO extends ConnectionFactory {
 	static ShoppingControl ShoppingControl = new ShoppingControl();
 
 	private String selectData = "select id, application, value, buy_date, due_date, description from expense where buy_date like '%";
+	private String selectDataByMonth = "select id, application, value, buy_date, due_date, description from expense where due_date like '%";
 	
 	private double sum = 0.0;
 	
@@ -100,7 +101,7 @@ public class ShoppingControlDAO extends ConnectionFactory {
 
 		String date = month+"/"+year;
 		
-		rs = st.executeQuery(selectData + date + "' order by id");
+		rs = st.executeQuery(selectDataByMonth + date + "' order by id");
 
 		List<ShoppingControl> listSelectBDPorMes = new ArrayList<ShoppingControl>();
 
@@ -194,13 +195,13 @@ public class ShoppingControlDAO extends ConnectionFactory {
 		
 		// concat mes e ano
 		
-		String date_buy = month+"/"+year;
+		String due_buy = month+"/"+year;
 		
 		String total;
 		/*String month = date.substring(3, date.length()-5);
 		String year = date.substring(6);*/		
 		
-		rs = st.executeQuery("select sum(value) as total from expense where buy_date like '%" + date_buy + "'");
+		rs = st.executeQuery("select sum(value) as total from expense where due_date like '%" + due_buy + "'");
 		
 		this.sum = Double.valueOf(String.format(Locale.US, "%.2f", Math.ceil(this.sum)));
 		

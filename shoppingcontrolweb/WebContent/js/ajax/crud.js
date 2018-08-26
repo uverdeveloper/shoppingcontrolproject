@@ -113,7 +113,7 @@ function cadastrarGastos() {
 						"id" : ultimoId,
 						"application" : $("#aplicacao").val(),
 						"value" : $("#valor").val(),
-						"buy_date" : dateToday.getDate() + '/' + monthNumber + '/' + dateToday.getYear(),
+						"buy_date" : dateToday.getDate() + '/' + monthNumber + '/' + dateToday.getFullYear().toString().substring(2),
 						"due_date" : $("#vencimento").val(),
 						"description" : $("#observacao").val()
 					};
