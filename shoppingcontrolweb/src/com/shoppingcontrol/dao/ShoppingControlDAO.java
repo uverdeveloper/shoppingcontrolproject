@@ -135,11 +135,11 @@ public class ShoppingControlDAO extends ConnectionFactory {
 		String registerDate = sdf.format(dateToday);*/
 		
 		pStmt.setInt(1, shoppingControl.getId());
-		pStmt.setString(2, shoppingControl.getApplication());
+		pStmt.setString(2, shoppingControl.getApplication().toUpperCase());
 		pStmt.setDouble(3, shoppingControl.getValue());
 		pStmt.setString(4,shoppingControl.getBuy_date());
 		pStmt.setString(5, shoppingControl.getDue_date());
-		pStmt.setString(6, shoppingControl.getDescription());
+		pStmt.setString(6, shoppingControl.getDescription().toUpperCase());
 
 		pStmt.execute();
 		pStmt.close();

@@ -96,12 +96,15 @@ function cadastrarGastos() {
 	var ultimoId;
 	
 	var monthNumber = 1;
-	
+	var dayNumber = dateToday.getDate();
 	monthNumber += dateToday.getMonth();
+	
+	if(dayNumber<10)
+		dayNumber = '0'+dayNumber;
 	
 	if(monthNumber <10)
 		monthNumber = '0'+monthNumber;
-	
+		
 		$.ajax({
 			type: "GET",
 			url: "http://localhost:8083/shoppingcontrolweb/rest/organizingId/lastId",
@@ -113,7 +116,7 @@ function cadastrarGastos() {
 						"id" : ultimoId,
 						"application" : $("#aplicacao").val(),
 						"value" : $("#valor").val(),
-						"buy_date" : dateToday.getDate() + '/' + monthNumber + '/' + dateToday.getFullYear().toString().substring(2),
+						"buy_date" : dayNumber + '/' + monthNumber + '/' + dateToday.getFullYear().toString().substring(2),
 						"due_date" : $("#vencimento").val(),
 						"description" : $("#observacao").val()
 					};
