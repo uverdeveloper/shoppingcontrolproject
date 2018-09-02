@@ -96,13 +96,15 @@ function cadastrarGastos() {
 	var ultimoId;
 	
 	var monthNumber = 1;
+	var day;
 	var dayNumber = dateToday.getDate();
 	monthNumber += dateToday.getMonth();
 	
-	if(dayNumber<10)
-		dayNumber = '0'+dayNumber;
 	
-	if(monthNumber <10)
+	if(dayNumber < 10)
+		day = '0'+dayNumber;
+	
+	if(monthNumber < 10)
 		monthNumber = '0'+monthNumber;
 		
 		$.ajax({
@@ -115,8 +117,8 @@ function cadastrarGastos() {
 				var data = {
 						"id" : ultimoId,
 						"application" : $("#aplicacao").val(),
-						"value" : $("#valor").val(),
-						"buy_date" : dayNumber + '/' + monthNumber + '/' + dateToday.getFullYear().toString().substring(2),
+						"value" : $("#valor").val().replace(',','.'),
+						"buy_date" : day + '/' + monthNumber + '/' + dateToday.getFullYear().toString().substring(2),
 						"due_date" : $("#vencimento").val(),
 						"description" : $("#observacao").val()
 					};
@@ -173,7 +175,7 @@ function updateItem() {
 	var data = {
 			"id" : $("#id").val(),
 			"application" : $("#aplicacao").val(),
-			"value" : $("#valor").val(),
+			"value" : $("#valor").val().replace(',','.'),
 			"buy_date" : $("#dataDaCompra").val(),
 			"due_date" : $("#vencimento").val(),
 			"description" : $("#observacao").val()!= '' ? $("#observacao").val() : 'N/A' 
