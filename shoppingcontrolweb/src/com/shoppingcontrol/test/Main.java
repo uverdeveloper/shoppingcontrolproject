@@ -22,7 +22,7 @@ public class Main {
 		Date date = new Date();
 		String buyDate = sdf.format(date);
 		
-		//ShoppingControlDAO dao = new ShoppingControlDAO(conn);
+		ShoppingControlDAO dao = new ShoppingControlDAO(conn);
 		
 		
 		// INSERT
@@ -97,13 +97,13 @@ public class Main {
 		
 		// GET SHOPPING OF THE SUM
 		/*try {
-			System.out.println("SUM = " + dao.sumValues("08", "2018"));
+			System.out.println("SUM = " + dao.sumValues("08", "18"));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
 		
-		ShoppingControlUsersBean controlUsersBean = new ShoppingControlUsersBean();
+		/*ShoppingControlUsersBean controlUsersBean = new ShoppingControlUsersBean();
 		controlUsersBean.setUser("uver");
 		controlUsersBean.setPassword("123");
 		
@@ -113,8 +113,21 @@ public class Main {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}*/
+		
+		List<String> somas = new ArrayList<String>();
+		
+		try {
+			somas = dao.monthlyTotal(9,"18");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
+		for(String r : somas) {
+			System.out.println("Total mensal = " + r);
+		}
 		
 	}
 

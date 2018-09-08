@@ -193,14 +193,10 @@ public class ShoppingControlDAO extends ConnectionFactory {
 	
 	public String sumValues(String month, String year) throws Exception {
 		
-		// concat mes e ano
-		
 		String due_buy = month+"/"+year;
 		
 		String total;
-		/*String month = date.substring(3, date.length()-5);
-		String year = date.substring(6);*/		
-		
+				
 		rs = st.executeQuery("select sum(value) as total from expense where due_date like '%" + due_buy + "'");
 		
 		this.sum = Double.valueOf(String.format(Locale.US, "%.2f", Math.ceil(this.sum)));
@@ -215,5 +211,35 @@ public class ShoppingControlDAO extends ConnectionFactory {
 		st.close();
 		
 		return total;
+	}
+	
+	public List<String> monthlyTotal(int month, String year) throws SQLException {
+		
+		List<String> monthlyMonthList = new ArrayList<String>();
+		
+		for(int i = month; i <= 12; i ++) {
+		
+		sum = 0;	
+			
+		String due_buy = i+"/"+year;
+		
+		String total;
+				
+		rs = st.executeQuery("select sum(value) as total from expense where due_date like '%" + due_buy + "'");
+		
+		this.sum = Double.valueOf(String.format(Locale.US, "%.2f", Math.ceil(this.sum)));
+		
+		while(rs.next()){
+			
+			this.sum += rs.getDouble(1); 
+		}
+		
+		total = Double.toString(this.sum);
+		monthlyMonthList.add(total);
+		}
+		st.close();
+		
+		return monthlyMonthList;
+		
 	}
 }
