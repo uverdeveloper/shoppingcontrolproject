@@ -105,17 +105,14 @@ function cadastrarGastos() {
 	var ultimoId;
 	
 	var monthNumber = 1;
-	var day;
-	var dayNumber = dateToday.getDate();
+	var day = dateToday.getDate();
 	monthNumber += dateToday.getMonth();
-	
-	
-	if(dayNumber < 10)
-		day = '0'+dayNumber;
+	var year = dateToday.getFullYear().toString();
+	year = year.substring(2);
 	
 	if(monthNumber < 10)
 		monthNumber = '0'+monthNumber;
-		
+	
 		$.ajax(
 				{
 				type: "GET",
@@ -128,7 +125,7 @@ function cadastrarGastos() {
 						"id" : ultimoId,
 						"application" : $("#aplicacao").val(),
 						"value" : $("#valor").val().replace(',','.'),
-						"buy_date" : day + '/' + monthNumber + '/' + dateToday.getFullYear().toString().substring(2),
+						"buy_date" : day + '/' + monthNumber + '/' + year,
 						"due_date" : $("#vencimento").val(),
 						"description" : $("#observacao").val()
 					};
