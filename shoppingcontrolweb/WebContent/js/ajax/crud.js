@@ -110,6 +110,9 @@ function cadastrarGastos() {
 	var year = dateToday.getFullYear().toString();
 	year = year.substring(2);
 	
+	if(day < 10)
+		day = '0'+day;
+	
 	if(monthNumber < 10)
 		monthNumber = '0'+monthNumber;
 	
@@ -238,8 +241,8 @@ function chartInit(){
 			      data.addColumn('number', 'gastos');
 			      // EM 2019 ALTERAR A ORDEM DOS N n[0],n[1],n[2] ... 
 			      data.addRows([
-			        [months[0],n[11]],[months[1],n[10]],[months[2],n[9]],[months[3],n[8]],[months[4],n[7]],[months[5],n[6]]
-			        ,[months[6],n[5]],[months[7],n[4]],[months[8],n[0]],[months[9],n[1]],[months[10],n[2]],[months[11],n[3]]
+			        [months[1],n[11]],[months[2],n[10]],[months[3],n[9]],[months[4],n[8]],[months[5],n[7]],[months[6],n[6]]
+			        ,[months[7],n[5]],[months[8],n[4]],[months[9],n[-1]],[months[10],n[0]],[months[11],n[1]],[months[12],n[2]]
 			      ]);
 			      
 			      var options = {
