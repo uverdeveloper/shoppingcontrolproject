@@ -233,7 +233,7 @@ function chartInit(){
 			success : function(data) {
 				var i;
 				var n = [];
-				for(i = 11; i>= 0; i--){
+				for(i = 0; i<= 11; i++){
 					n[i] = parseFloat(data[i]);
 				}
 				var data = new google.visualization.DataTable();
@@ -241,8 +241,8 @@ function chartInit(){
 			      data.addColumn('number', 'gastos');
 			      // EM 2019 ALTERAR A ORDEM DOS N n[0],n[1],n[2] ... 
 			      data.addRows([
-			        [months[1],n[11]],[months[2],n[10]],[months[3],n[9]],[months[4],n[8]],[months[5],n[7]],[months[6],n[6]]
-			        ,[months[7],n[5]],[months[8],n[4]],[months[9],n[-1]],[months[10],n[0]],[months[11],n[1]],[months[12],n[2]]
+			        [months[0],n[0]],[months[1],n[1]],[months[2],n[2]],[months[3],n[3]],[months[4],n[4]],[months[5],n[5]]
+			        ,[months[6],n[6]],[months[7],n[7]],[months[8],n[8]],[months[9],n[9]],[months[10],n[10]],[months[11],n[11]]
 			      ]);
 			      
 			      var options = {

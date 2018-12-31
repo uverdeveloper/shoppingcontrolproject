@@ -167,6 +167,7 @@ public class ShoppingControlDAO extends ConnectionFactory {
 		pStmt.setString(1, shoppingControl.getApplication().toUpperCase());
 		pStmt.setDouble(2, shoppingControl.getValue());
 		pStmt.setString(3, shoppingControl.getBuy_date());
+		System.err.println(shoppingControl.getDue_date());
 		pStmt.setString(4, shoppingControl.getDue_date());
 		pStmt.setString(5, shoppingControl.getDescription().toUpperCase());
 		pStmt.setInt(6, shoppingControl.getId());
