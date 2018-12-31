@@ -20,9 +20,9 @@ import com.shoppingcontrol.dao.ShoppingControlDAO;
 public class MonthlyTotalResource {
 
 	@GET
-	@Path("/{month}/{year}")
+	@Path("/{year}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<String> totalValues(@PathParam("month") String month, @PathParam("year") String year){
+	public List<String> totalValues (@PathParam("year") String year){
 		
 		List<String> monthlyTotalList = new ArrayList<String>();
 		
@@ -30,7 +30,7 @@ public class MonthlyTotalResource {
 		ShoppingControlDAO dao = new ShoppingControlDAO(conn);
 				
 		try {
-			monthlyTotalList = dao.monthlyTotal(Integer.parseInt(month), year);
+			monthlyTotalList = dao.monthlyTotal(year);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

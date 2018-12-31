@@ -221,29 +221,29 @@ function chartInit(){
 	
 	var monthNumber = 1;
 	var yearNumber = dateToday.getFullYear().toString().substring(2);
-	var monthlyTotal;
-	
-	monthNumber += dateToday.getMonth();
 	
 	$.ajax(
 			{
 			type : "GET",
-			url : "http://localhost:8083/shoppingcontrolweb/rest/monthlyTotal/" + monthNumber + "/" + yearNumber,
+			url : "http://localhost:8083/shoppingcontrolweb/rest/monthlyTotal/" + 19,
 			contentType : "application/json; charset=UTF-8",
 			success : function(data) {
-				var i;
-				var n = [];
+				var i = 0;
+				var n = new Float64Array(12);
 				for(i = 0; i<= 11; i++){
+					if(data[i]>0){
+					
 					n[i] = parseFloat(data[i]);
+					}
 				}
-				var data = new google.visualization.DataTable();
-			      data.addColumn('string', 'X');
-			      data.addColumn('number', 'gastos');
+				
+				var dt = new google.visualization.DataTable();
+			      dt.addColumn('string', 'X');
+			      dt.addColumn('number', 'gastos');
 			      // EM 2019 ALTERAR A ORDEM DOS N n[0],n[1],n[2] ... 
-			      data.addRows([
-			        [months[0],n[0]],[months[1],n[1]],[months[2],n[2]],[months[3],n[3]],[months[4],n[4]],[months[5],n[5]]
-			        ,[months[6],n[6]],[months[7],n[7]],[months[8],n[8]],[months[9],n[9]],[months[10],n[10]],[months[11],n[11]]
-			      ]);
+			      dt.addRows(
+			    [[months[0],n[0]],[months[1],n[1]],[months[2],n[2]],[months[3],n[3]],[months[4],n[4]],[months[5],n[5]],
+			    [months[6],n[6]],[months[7],n[7]],[months[8],n[8]],[months[9],n[9]],[months[10],n[10]],[months[11],n[11]]]);
 			      
 			      var options = {
 			        hAxis: {
@@ -255,7 +255,7 @@ function chartInit(){
 			        backgroundColor: '#f1f8e9'
 			      };
 			      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-			      chart.draw(data, options);
+			      chart.draw(dt, options);
 			},
 			error : function() {
 					Materialize.toast('Gráfico indisponível', 4000)

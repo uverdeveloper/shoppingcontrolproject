@@ -214,11 +214,11 @@ public class ShoppingControlDAO extends ConnectionFactory {
 		return total;
 	}
 	
-	public List<String> monthlyTotal(int month, String year) throws SQLException {
+	public List<String> monthlyTotal(String year) throws SQLException {
 		
 		List<String> monthlyMonthList = new ArrayList<String>();
 		
-		for(int i = month; i <= 12; i ++) {
+		for(int i = 1; i <= 12; i ++) {
 		
 		sum = 0;	
 			

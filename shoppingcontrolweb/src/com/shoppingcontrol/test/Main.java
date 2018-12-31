@@ -118,7 +118,7 @@ public class Main {
 		List<String> somas = new ArrayList<String>();
 		
 		try {
-			somas = dao.monthlyTotal(9,"18");
+			somas = dao.monthlyTotal("19");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
