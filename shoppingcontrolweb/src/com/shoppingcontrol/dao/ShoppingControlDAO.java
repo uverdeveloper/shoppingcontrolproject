@@ -222,7 +222,7 @@ public class ShoppingControlDAO extends ConnectionFactory {
 		
 		sum = 0;	
 			
-		String due_buy = i+"/"+year;
+		String due_buy = "0"+i+"/"+year;
 		
 		String total;
 				
