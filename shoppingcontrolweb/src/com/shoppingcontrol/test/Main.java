@@ -41,17 +41,14 @@ public class Main {
 		}*/
 		
 		// SELECT
-		/*try {
-			List<ShoppingControl> list = new ArrayList<ShoppingControl>();
-			list = dao.selectAll();
-			
-			for(ShoppingControl data : list) {
-				System.out.println(data.toString());
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+		/*
+		 * try { List<ShoppingControl> list = new ArrayList<ShoppingControl>(); list =
+		 * dao.selectAll();
+		 * 
+		 * for(ShoppingControl data : list) { System.out.println(data.toString()); } }
+		 * catch (SQLException e) { // TODO Auto-generated catch block
+		 * e.printStackTrace(); }
+		 */
 		
 		// SELECT BY YEAR
 		/*try {
@@ -115,20 +112,24 @@ public class Main {
 			e.printStackTrace();
 		}*/
 		
-		List<String> somas = new ArrayList<String>();
+		  String meses[] = {"Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"};
+		  List<String> somas = new ArrayList<String>();
+		  
+		  try { somas = dao.monthlyTotal("19");
+		  
+		  } catch (SQLException e) { // TODO Auto-generated catch block
+		  e.printStackTrace(); }
+		  
+		  int i = 0;
+		  
+		  for(String r : somas) { 
+			  System.out.println(meses[i]+ " = " + r); 
+			  i++;  
+		  }
+		  
+		  }
+		 
 		
-		try {
-			somas = dao.monthlyTotal("19");
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		for(String r : somas) {
-			System.out.println("Total mensal = " + r);
-		}
-		
-	}
+	
 
 }

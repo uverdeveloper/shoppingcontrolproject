@@ -232,8 +232,7 @@ function chartInit(){
 				var n = new Float64Array(12);
 				for(i = 0; i<= 11; i++){
 					if(data[i]>0){
-					
-					n[i] = parseFloat(data[i]);
+						n[i] = parseFloat(data[i]);
 					}
 				}
 				

@@ -51,7 +51,7 @@ public class ShoppingControlDAO extends ConnectionFactory {
 		List<ShoppingControl> listShoppingControl = new ArrayList<ShoppingControl>();
 		
 		while (rs.next()) {
-			// NECESSARIO, SENAO O OBJETO TRAZ SEMPRE O ULTIMO OBJETO NA MEMORIA
+			
 			ShoppingControl shoppingControl = new ShoppingControl();
 			
 			shoppingControl.setId(rs.getInt("id"));
@@ -220,13 +220,19 @@ public class ShoppingControlDAO extends ConnectionFactory {
 		
 		for(int i = 1; i <= 12; i ++) {
 		
-		sum = 0;	
-			
-		String due_buy = "0"+i+"/"+year;
+		sum = 0;
 		
+		String due_buy = "";	
+		
+		if(i<10) {
+		due_buy = "0"+i+"/"+year;
+		}else {
+			due_buy =i+"/"+year;
+		}
 		String total;
-				
-		rs = st.executeQuery("select sum(value) as total from expense where due_date like '%" + due_buy + "'");
+		String query = 	"select sum(value) as total from expense where due_date like '%" + due_buy + "'";
+		
+		rs = st.executeQuery(query);
 		
 		this.sum = Double.valueOf(String.format(Locale.US, "%.2f", Math.ceil(this.sum)));
 		
