@@ -239,7 +239,7 @@ function chartInit(){
 				var dt = new google.visualization.DataTable();
 			      dt.addColumn('string', 'X');
 			      dt.addColumn('number', 'gastos');
-			      // EM 2019 ALTERAR A ORDEM DOS N n[0],n[1],n[2] ... 
+			     
 			      dt.addRows(
 			    [[months[0],n[0]],[months[1],n[1]],[months[2],n[2]],[months[3],n[3]],[months[4],n[4]],[months[5],n[5]],
 			    [months[6],n[6]],[months[7],n[7]],[months[8],n[8]],[months[9],n[9]],[months[10],n[10]],[months[11],n[11]]]);

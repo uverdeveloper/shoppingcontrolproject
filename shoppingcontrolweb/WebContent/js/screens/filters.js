@@ -48,6 +48,7 @@ function init(val) {
 						+ "<option value=\"17\">2017</option>"
 						+ "<option value=\"18\">2018</option>"
 						+ "<option value=\"19\">2019</option>"
+						+ "<option value=\"20\">2020</option>"
 						+ "</select>"
 						+ "</div>"
 						)
@@ -78,6 +79,7 @@ function init(val) {
 								+ "<option value=\"17\">2017</option>"
 								+ "<option value=\"18\">2018</option>"
 								+ "<option value=\"19\">2019</option>"
+								+ "<option value=\"20\">2020</option>"
 								+ "</select>"
 								+"<button id=\"btnSearchMonth\" onclick=\"consultaPorMes()\" class=\"waves-effect waves-light btn-floating\"><i class=\"material-icons\">search</i></button>"
 								+"</div>"
