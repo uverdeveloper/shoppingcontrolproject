@@ -225,7 +225,7 @@ function chartInit(){
 	$.ajax(
 			{
 			type : "GET",
-			url : "http://localhost:8083/shoppingcontrolweb/rest/monthlyTotal/" + 19,
+			url : "http://localhost:8083/shoppingcontrolweb/rest/monthlyTotal/" + 20,
 			contentType : "application/json; charset=UTF-8",
 			success : function(data) {
 				var i = 0;
