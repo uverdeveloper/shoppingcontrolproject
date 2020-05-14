@@ -75,7 +75,7 @@ function init(val) {
 								+ "<option value=\"12\">Dezembro</option>"
 								+ "</select>"
 								+ "<select id=\"ano\">"
-								+ "<option value=\"--------\"selected>--------</option>"
+								+ "<option value=\"20\"selected>2020</option>"
 								+ "<option value=\"17\">2017</option>"
 								+ "<option value=\"18\">2018</option>"
 								+ "<option value=\"19\">2019</option>"
